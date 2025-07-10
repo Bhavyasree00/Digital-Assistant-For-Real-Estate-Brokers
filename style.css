@@ -1,0 +1,111 @@
+/* Apply background image to the whole page */
+/* Apply background image to the whole page */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url("../img/pexels-pixabay-259588.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+
+/* Translucent container to improve readability */
+.container {
+    background-color: rgba(10, 45, 51, 0);
+    border-radius: 12px;
+    padding: 40px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1000px;
+}
+
+
+h1 {
+    text-align: center;
+    color: #ffffff; /* Bright white for visibility */
+    text-shadow: 2px 2px 6px rgba(5, 1, 1, 0.6); /* Soft shadow for contrast */
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.prop-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.location {
+    color: #555;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.no-results {
+    text-align: center;
+    color: #ddd;
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.search-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    margin-top: 60px;
+    text-align: center;
+}

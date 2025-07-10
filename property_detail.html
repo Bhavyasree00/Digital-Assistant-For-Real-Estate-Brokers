@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Property Details</title>
+    <style>
+body {
+    background-image: url("{% static 'img/whatsapp_house.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .property-info {
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row > div {
+            flex: 1;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            align-self: flex-start;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="property-info">
+            <h2>Modern Flat</h2>
+            <p><em>No image available</em></p>
+            <p><strong>Price:</strong> ₹5500000.00</p>
+            <p><strong>City:</strong> Hyderabad</p>
+            <p>2BHK with balcony</p>
+        </div>
+
+        <h3>Contact About This Property</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+            <button type="submit">Submit Inquiry</button>
+        </form>
+    </div>
+</body>
+</html>

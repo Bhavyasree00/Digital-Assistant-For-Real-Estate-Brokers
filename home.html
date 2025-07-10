@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Listings</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Search Properties</h1>
+
+        <!-- 🔍 Search Form -->
+        <form id="searchForm" method="get">
+            <input type="text" name="q" id="searchInput" placeholder="Enter city name...">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- 📈 Market Analysis Button -->
+        <div style="text-align: center; margin-bottom: 10px;">
+            <a href="{% url 'market_analysis' %}" style="
+                background-color: #2ecc71;
+	
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: bold;
+                display: inline-block;
+                margin-bottom: 10px;
+            ">📊 View Market Analysis</a>
+        </div>
+
+        <!-- 📄 Upload Transaction Document Button -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="{% url 'upload_document' %}" style="
+                background-color: #f39c12;
+		
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: bold;
+                display: inline-block;
+            ">📄 Upload Transaction Document</a>
+        </div>
+<div style="text-align: center; margin-top: 20px;">
+  <a href="{% url 'recommend_properties' %}">
+    <button style="
+      background-color: #007bff;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+    ">
+      🤖 Smart Recommendations
+    </button>
+  </a>
+</div>
+
+
+        <!-- 🏡 Property Listings -->
+        <div id="results">
+            {% if query %}
+                {% if properties %}
+                    <div class="grid">
+                        {% for property in properties %}
+                            <div class="card">
+                                {% if property.image %}
+                                    <img src="{{ property.image.url }}" alt="Property Image" class="prop-img">
+                                {% else %}
+                                    <img src="{% static 'img/no-image.png' %}" alt="No image" class="prop-img">
+                                {% endif %}
+                                <h3><a href="{% url 'property_detail' property.pk %}">{{ property.title }}</a></h3>
+                                <p>{{ property.description|truncatewords:20 }}</p>
+                                <p><strong>₹{{ property.price }}</strong></p>
+                                <p class="location">📍 {{ property.city }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-results">No properties found for "{{ query }}". Try another city.</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 🤖 Botpress Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.1/inject.js" defer></script>
+
+    <script src="https://files.bpcontent.cloud/2025/07/09/08/20250709085052-15EW8YJQ.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Market Analysis</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .market-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="market-container">
+        <h1>📊 Real Estate Market Analysis</h1>
+
+        <h2>Average Price by City</h2>
+        <table>
+            <tr>
+                <th>City</th>
+                <th>Average Price (₹)</th>
+            </tr>
+            {% for item in avg_price_by_city %}
+                <tr>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.avg_price|floatformat:0 }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="2">No data available.</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Total Listings by City</h2>
+        <table>
+            <tr>
+                <th>City</th>
+                <th>Number of Listings</th>
+            </tr>
+            {% for item in listings_count_by_city %}
+                <tr>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.listing_count }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="2">No data available.</td></tr>
+            {% endfor %}
+        </table>
+
+        <a class="back-link" href="{% url 'home' %}">← Back to Home</a>
+    </div>
+
+    <!-- Optional: Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.1/inject.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2025/07/09/08/20250709085052-15EW8YJQ.js" defer></script>
+</body>
+</html>

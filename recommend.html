@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Recommendations</title>
+    <style>
+        body {
+            background-image: url("{% static 'img/pexels-pixabay-259588.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            margin: 80px auto;
+            border-radius: 15px;
+            max-width: 700px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            background-color: #f5f5f5;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>🤖 Personalized Property Recommendations</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="preferences" placeholder="E.g., Hyderabad 2BHK 5000000">
+            <br>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        {% if recommendations %}
+            <h3>Recommended Properties:</h3>
+            <ul>
+                {% for prop in recommendations %}
+                    <li>
+                        <strong>{{ prop.title }}</strong><br>
+                        Location: {{ prop.location }}<br>
+                        Price: ₹{{ prop.price }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <a href="{% url 'home' %}">← Back to Home</a>
+    </div>
+</body>
+</html>
